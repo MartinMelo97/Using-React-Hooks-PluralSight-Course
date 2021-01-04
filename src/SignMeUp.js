@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 const SignMeUp = ({ signupCallback }) => {
   useEffect(() => {
-    console.log(`SignMeUp:useEffect called`);
+    console.log('SignMeUp:useEffect called');
   });
 
   const [email, setEmail] = useState();
@@ -25,19 +25,17 @@ const SignMeUp = ({ signupCallback }) => {
     new Promise(function(resolve) {
       setTimeout(function() {
         setSendProcessing(false);
-        setEmail("");
+        setEmail('');
         resolve();
       }, 1000);
     }).then(() => {
       notify();
       signupCallback(email);
-      setEmail("");
+      setEmail('');
     });
   }
 
-  const buttonText = sendProcessing ? "processing..." : "Get Updates";
-
-  //console.log("src/SignMeUp called");
+  const buttonText = sendProcessing ? 'processing...' : 'Get Updates';
 
   return (
     <div className="container">

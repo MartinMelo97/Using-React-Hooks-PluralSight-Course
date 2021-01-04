@@ -8,6 +8,10 @@
     },
     "plugins": ["react-hooks"],
     "rules": {
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "array-bracket-spacing": ["error", "never"],
+        "object-curly-spacing": [2, "always"],
+        "quotes": ["error", "single"],
         "indent": ["error", 2],
         "semi": [2, "always"],
         "react-hooks/rules-of-hooks": "error"

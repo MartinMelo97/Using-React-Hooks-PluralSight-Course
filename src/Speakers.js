@@ -1,11 +1,10 @@
-import React, { useState, useEffect} from "react";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../static/site.css";
-import { Header } from "../src/Header";
-import { Menu } from "../src/Menu";
-import SpeakerData from "./SpeakerData";
-import SpeakerDetail from "./SpeakerDetail";
+import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../static/site.css';
+import { Header } from '../src/Header';
+import { Menu } from '../src/Menu';
+import SpeakerData from './SpeakerData';
+import SpeakerDetail from './SpeakerDetail';
 
 const Speakers = ({}) => {
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
@@ -28,9 +27,9 @@ const Speakers = ({}) => {
       setSpeakerList(speakerListServerFilter);
     });
     return () => {
-      console.log("cleanup");
+      console.log('cleanup');
     };
-  }, []); // [speakingSunday, speakingSaturday]);
+  }, []);
 
   const handleChangeSaturday = () => {
     setSpeakingSaturday(!speakingSaturday);
@@ -58,7 +57,7 @@ const Speakers = ({}) => {
 
   const heartFavoriteHandler = (e, favoriteValue) => {
     e.preventDefault();
-    const sessionId = parseInt(e.target.attributes["data-sessionid"].value);
+    const sessionId = parseInt(e.target.attributes['data-sessionid'].value);
     setSpeakerList(speakerList.map(item => {
       if (item.id === sessionId) {
         item.favorite = favoriteValue;
@@ -66,7 +65,6 @@ const Speakers = ({}) => {
       }
       return item;
     }));
-    //console.log("changing session favorte to " + favoriteValue);
   };
 
   if (isLoading) return <div>Loading...</div>;

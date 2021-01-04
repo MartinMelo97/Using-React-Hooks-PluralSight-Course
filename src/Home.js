@@ -1,15 +1,14 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../static/site.css";
-import { Header } from "../src/Header";
-import { Menu } from "../src/Menu";
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../static/site.css';
+import { Header } from '../src/Header';
+import { Menu } from '../src/Menu';
 
 function index() {
   return (
     <div>
       <Header />
       <Menu />
-
       <div className="container">
         <div className="row">
           <div className="col margintopbottom">
