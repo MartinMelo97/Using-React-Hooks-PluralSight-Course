@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const InputElement = () => {
 
-  const [inputText, setInputText] = useState('')
-  const [historyList, setHistoryList] = useState([])
+  const [inputText, setInputText] = useState('');
+  const [historyList, setHistoryList] = useState([]);
 
   const handleInputText = (event) => {
-    setInputText(event.target.value)
-    addItemToHistoryList(event)
-  }
+    setInputText(event.target.value);
+    addItemToHistoryList(event);
+  };
 
   const addItemToHistoryList = (event) => {
-    setHistoryList([...historyList, event.target.value])
-  }
+    setHistoryList([...historyList, event.target.value]);
+  };
 
   return (
     <div>
@@ -27,7 +27,7 @@ const InputElement = () => {
         <p>{historyItem}</p>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default InputElement
+export default InputElement;

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import ImageToggleOnScroll from '../src/components/ImageToggleOnScroll'
+import React, { useState, useEffect } from 'react';
+import ImageToggleOnScroll from '../src/components/ImageToggleOnScroll';
 
 const ImageChangeOnScroll = () => {
 
@@ -18,19 +18,19 @@ const ImageChangeOnScroll = () => {
     { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqDoP6WKFW2_w_q1CcFpkTm0IeNMZCulTFng&usqp=CAU', alt: 'Actosoft' },
     { src: 'https://www.w3schools.com/howto/pineapple.jpg', alt: 'Pina' },
     { src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqDoP6WKFW2_w_q1CcFpkTm0IeNMZCulTFng&usqp=CAU', alt: 'Actosoft' }
-  ]
+  ];
 
-  const [mouseEventCounter, setMouseEventCounter] = useState(0)
-  const [currentImageKey, setCurrentImageKey] = useState(0)
+  const [mouseEventCounter, setMouseEventCounter] = useState(0);
+  const [currentImageKey, setCurrentImageKey] = useState(0);
 
   useEffect(() => {
-    window.document.title = `Image key: ${currentImageKey}`
-  }, [currentImageKey])
+    window.document.title = `Image key: ${currentImageKey}`;
+  }, [currentImageKey]);
 
   const handleMouseOver = index => {
-    setCurrentImageKey(index)
-    setMouseEventCounter(mouseEventCounter + 1)
-  }
+    setCurrentImageKey(index);
+    setMouseEventCounter(mouseEventCounter + 1);
+  };
 
   return (
     <div>
@@ -44,7 +44,7 @@ const ImageChangeOnScroll = () => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default ImageChangeOnScroll
+export default ImageChangeOnScroll;

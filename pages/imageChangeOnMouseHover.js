@@ -1,4 +1,4 @@
-import ImageToggleOnMouseOver from '../src/components/ImageToggleOnMouseHover'
+import ImageToggleOnMouseOver from '../src/components/ImageToggleOnMouseHover';
 
 const ImageChangeOnMouseHover = () => {
   return (
@@ -12,7 +12,7 @@ const ImageChangeOnMouseHover = () => {
         alt='Actosoft'
       />
     </div>
-  )
-}
+  );
+};
 
-export default ImageChangeOnMouseHover
+export default ImageChangeOnMouseHover;
