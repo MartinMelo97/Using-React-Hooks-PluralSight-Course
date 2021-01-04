@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from "react";
+import App from "../src/App";
 
-const InputElement = () => {
-};
+function index() {
+  return <App pageName="Home" />;
+}
 
-export default InputElement;
+export default index;
