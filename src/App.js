@@ -1,6 +1,8 @@
-import React from 'react';
+import { createContext } from 'react';
 import Home from './Home';
 import Speakers from './Speakers';
+
+export const ConfigContext = createContext();
 
 const pageToShow = pageName => {
   if (pageName === 'Home') return <Home />;
@@ -8,8 +10,17 @@ const pageToShow = pageName => {
   return <div>Not Found</div>;
 };
 
+const configValue = {
+  showSignMeUp: true,
+  showSpeakerSpeakingDays: true
+};
+
 const App = ({ pageName }) => {
-  return <div>{pageToShow(pageName)}</div>;
+  return (
+    <ConfigContext.Provider value={configValue}>
+      <div>{pageToShow(pageName)}</div>;
+    </ConfigContext.Provider>
+  );
 };
 
 export default App;
