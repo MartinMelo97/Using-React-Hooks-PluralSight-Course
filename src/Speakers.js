@@ -1,8 +1,6 @@
 import React, {
   useState,
-  useEffect,
   useContext,
-  useReducer,
   useCallback,
   useMemo
 } from 'react';
@@ -10,39 +8,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../static/site.css';
 import { Header } from '../src/Header';
 import { Menu } from '../src/Menu';
-import SpeakerData from './SpeakerData';
 import SpeakerDetail from './SpeakerDetail';
 import { ConfigContext } from './App';
-import speakerReducer from './SpeakersReducer';
+import useSpeakerDataManager from './useSpeakerDataManager';
 
 const Speakers = ({}) => {
+  const { isLoading, speakerList, toggleSpeakerFavorite } = useSpeakerDataManager();
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
-  const [speakerList, dispatch] = useReducer(speakerReducer, []);
-  const [isLoading, setIsLoading] = useState(true);
-
   const context = useContext(ConfigContext);
-
-  useEffect(() => {
-    setIsLoading(true);
-    new Promise(function(resolve) {
-      setTimeout(function() {
-        resolve();
-      }, 1000);
-    }).then(() => {
-      setIsLoading(false);
-      const speakerListServerFilter = SpeakerData.filter(({ sat, sun }) => {
-        return (speakingSaturday && sat) || (speakingSunday && sun);
-      });
-      dispatch({
-        type: 'SET_SPEAKER_LIST',
-        data: speakerListServerFilter
-      });
-    });
-    return () => {
-      console.log('cleanup');
-    };
-  }, []);
 
   const handleChangeSaturday = () => {
     setSpeakingSaturday(!speakingSaturday);
@@ -68,13 +42,9 @@ const Speakers = ({}) => {
     setSpeakingSunday(!speakingSunday);
   };
 
-  const heartFavoriteHandler = useCallback((e, favoriteValue) => {
+  const heartFavoriteHandler = useCallback((e, speakerRec) => {
     e.preventDefault();
-    const sessionId = parseInt(e.target.attributes['data-sessionid'].value);
-    dispatch({
-      type: favoriteValue ? 'FAVORITE' : 'UNFAVORITE',
-      sessionId
-    });
+    toggleSpeakerFavorite(speakerRec);
   }, []);
 
   if (isLoading) return <div>Loading...</div>;
@@ -115,16 +85,12 @@ const Speakers = ({}) => {
         <div className="row">
           <div className="card-deck">
             {speakerListFiltered.map(
-              ({ id, firstName, lastName, bio, favorite }) => {
+              (speakerRec) => {
                 return (
                   <SpeakerDetail
-                    key={id}
-                    id={id}
-                    favorite={favorite}
+                    key={speakerRec.id}
+                    speakerRec={speakerRec}
                     onHeartFavoriteHandler={heartFavoriteHandler}
-                    firstName={firstName}
-                    lastName={lastName}
-                    bio={bio}
                   />
                 );
               }

@@ -7,13 +7,15 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint-fix": "node_modules/.bin/eslint --fix --ext .js,.jsx ."
+    "lint-fix": "node_modules/.bin/eslint --fix --ext .js,.jsx .",
+    "json-server": "json-server --watch db.json --port 4000 --delay 500"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "next": "^10.0.4",
     "react": "^17.0.1",
