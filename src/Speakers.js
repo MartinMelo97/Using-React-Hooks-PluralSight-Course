@@ -10,13 +10,19 @@ import { Header } from '../src/Header';
 import { Menu } from '../src/Menu';
 import SpeakerDetail from './SpeakerDetail';
 import { ConfigContext } from './App';
-import useSpeakerDataManager from './useSpeakerDataManager';
+import { GlobalContext } from './GlobalState';
 
 const Speakers = ({}) => {
-  const { isLoading, speakerList, toggleSpeakerFavorite } = useSpeakerDataManager();
   const [speakingSaturday, setSpeakingSaturday] = useState(true);
   const [speakingSunday, setSpeakingSunday] = useState(true);
   const context = useContext(ConfigContext);
+  const {
+    isLoading,
+    speakerList,
+    toggleSpeakerFavorite,
+    hasErrored,
+    error
+  } = useContext(GlobalContext);
 
   const handleChangeSaturday = () => {
     setSpeakingSaturday(!speakingSaturday);
@@ -46,6 +52,8 @@ const Speakers = ({}) => {
     e.preventDefault();
     toggleSpeakerFavorite(speakerRec);
   }, []);
+
+  if (hasErrored) return <div>Error: {error.message}</div>;
 
   if (isLoading) return <div>Loading...</div>;
 

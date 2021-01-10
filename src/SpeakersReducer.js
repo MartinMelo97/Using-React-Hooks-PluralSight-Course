@@ -11,13 +11,19 @@ const speakerReducer = (state, action) => {
 
   switch (action.type) {
   case 'SET_SPEAKER_LIST': {
-    return { ...state, speakerList: action.data, isLoading: false };
+    return { ...state, speakerList: action.data, isLoading: false, hasErrored: false };
   }
   case 'FAVORITE': {
     return { ...state, speakerList: updateFavorite(true) };
   }
   case 'UNFAVORITE': {
     return { ...state, speakerList: updateFavorite(false) };
+  }
+  case 'INCREMENT_FAVORITE_CLICK_COUNT': {
+    return { ...state, favoriteClickCount: state.favoriteClickCount + 1 };
+  }
+  case 'ERRORED': {
+    return { ...state, hasErrored: true, error: action.error };
   }
   default:
     return state;

@@ -1,4 +1,5 @@
-import { memo } from 'react';
+import { memo, useContext } from 'react';
+import { FavoriteClickCounterContext } from './FavoriteClickCountContext';
 import ImageToggleOnScroll from './ImageToggleOnScroll';
 
 const SpeakerDetail = memo(({
@@ -15,6 +16,8 @@ const SpeakerDetail = memo(({
   } = speakerRec;
 
   console.log('testito', `id: ${id}, fullName: ${firstName} ${lastName}, favorite: ${favorite}`);
+
+  const { incrementFavoriteClickCount } = useContext(FavoriteClickCounterContext);
 
   return (
     <div className="card col-4 cardmin">
@@ -33,13 +36,13 @@ const SpeakerDetail = memo(({
                 ...speakerRec,
                 favorite: !speakerRec.favorite
               });
+              incrementFavoriteClickCount();
             }}
           />
           <span>
             {firstName} {lastName}
           </span>
         </h4>
-
         <span>{bio}</span>
       </div>
     </div>
